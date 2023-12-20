@@ -1,8 +1,13 @@
+import React from "react";
+import { View, SafeAreaView, Text } from "react-native";
+
 const App = () => {
   return (
-    <>
-      <h1>hello </h1>
-    </>
+    <SafeAreaView>
+      <View>
+        <Text>Hello World !</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
