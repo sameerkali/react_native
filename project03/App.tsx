@@ -28,16 +28,16 @@ const App = () => {
     const specialChars = "!@#$%^&*()_+";
 
     if (uppercase) {
-      characterList += uppercase;
+      characterList += upperCaseChars;
     }
     if (lowercase) {
-      characterList += lowercase;
+      characterList += lowerCaseChars;
     }
     if (number) {
-      characterList += number;
+      characterList += digitChars;
     }
     if (symbol) {
-      characterList += symbol;
+      characterList += specialChars;
     }
 
     const passwordResult = createPassword(characterList, passwordLength);
