@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 
-
+  
 function App(): JSX.Element {
   const [randomBackground, setRandomBackground] = useState("#ffffff");
 
