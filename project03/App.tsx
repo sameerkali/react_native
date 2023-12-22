@@ -18,10 +18,20 @@ const App = () => {
   const [number, setnumber] = useState(false);
   const [symbol, setsymbol] = useState(false);
 
-  //functions
-  const generatePasswordString = (passwordLength: number) => {}
-  const createPassword = (characters: string ,passwordLength: number) => {}
-  const resetPassword = () => {}
+  //*functions
+  //generate Password
+  const generatePasswordString = (passwordLength: number) => {};
+  //create Password
+  const createPassword = (characters: string, passwordLength: number) => {
+    let result = "";
+    for (let index = 0; index < passwordLength; index++) {
+      const characterIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(characterIndex);
+    }
+    return result;
+  };
+  //reset Password
+  const resetPassword = () => {};
 
   return (
     <View>
