@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, SectionList } from 'react-native';
-import Footer from './Footer';
 
 type MenuItem = {
   title: string;
@@ -93,7 +92,6 @@ const MenuItems: React.FC = () => {
         renderSectionHeader={renderSectionHeader}
         ItemSeparatorComponent={Separator}
       />
-      {/* <Footer/> */}
     </View>
   );
 };

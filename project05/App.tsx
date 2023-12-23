@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import MenuItems from "./MenuItems";
 import Header from "./Header";
+import Footer from "./Footer";
 
 type MenuItem = {
   name: string;
@@ -57,6 +58,7 @@ const App: React.FC = () => {
         renderItem={renderItem}
       /> */}
       <MenuItems />
+      <Footer/>
     </View>
   );
 };
