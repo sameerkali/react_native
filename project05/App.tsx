@@ -49,7 +49,7 @@ const App: React.FC = () => {
 
   return (
     <View style={menuStyles.container}>
-      {/* <Header/> */}
+      <Header/>
       <Text style={menuStyles.headerText}>View Menu</Text>
       {/* <FlatList
         data={menuItemsToDisplay}
