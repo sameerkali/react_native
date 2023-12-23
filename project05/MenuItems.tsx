@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, SectionList } from 'react-native';
+import Footer from './Footer';
 
 type MenuItem = {
   title: string;
@@ -74,11 +75,7 @@ const Item: React.FC<ItemProps> = ({ name }) => (
 
 const Separator: React.FC = () => <View style={menuStyles.separator} />;
 
-const Footer: React.FC = () => (
-  <Text style={menuStyles.footerText}>
-    All Rights Reserved by Little Lemon 2022
-  </Text>
-);
+
 
 const MenuItems: React.FC = () => {
   const renderItem = ({ item }: { item: string }) => <Item name={item} />;
@@ -94,9 +91,9 @@ const MenuItems: React.FC = () => {
         sections={menuItemsToDisplay}
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
-        ListFooterComponent={Footer}
         ItemSeparatorComponent={Separator}
       />
+      {/* <Footer/> */}
     </View>
   );
 };
@@ -105,6 +102,7 @@ const MenuItems: React.FC = () => {
 const menuStyles = StyleSheet.create({
   container: {
     flex: 0.95,
+    height: '100%',
   },
   innerContainer: {
     paddingHorizontal: 40,
@@ -126,12 +124,7 @@ const menuStyles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#EDEFEE',
   },
-  footerText: {
-    color: '#EDEFEE',
-    fontSize: 20,
-    flexWrap: 'wrap',
-    textAlign: 'center',
-  },
+  
 });
 
 export default MenuItems;

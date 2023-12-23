@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import MenuItems from "./MenuItems";
+import Header from "./Header";
 
 type MenuItem = {
   name: string;
@@ -32,10 +33,8 @@ const menuItemsToDisplay: MenuItem[] = [
   { name: "Tartufo", id: "19T" },
   { name: "Tartufo", id: "20U" },
   { name: "Tiramisu", id: "21V" },
-  { name: "Panna Cotta", id: "22W" },
+  { name: "Panna Cotta", id: "22W" }
 ];
-
-
 
 const Item: React.FC<ItemProps> = ({ name }) => (
   <View style={menuStyles.innerContainer}>
@@ -44,40 +43,44 @@ const Item: React.FC<ItemProps> = ({ name }) => (
 );
 
 const App: React.FC = () => {
-  const renderItem = ({ item }: { item: MenuItem }) => <Item name={item.name} />;
+  const renderItem = ({ item }: { item: MenuItem }) => (
+    <Item name={item.name} />
+  );
 
   return (
     <View style={menuStyles.container}>
+      {/* <Header/> */}
       <Text style={menuStyles.headerText}>View Menu</Text>
       {/* <FlatList
         data={menuItemsToDisplay}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
       /> */}
-      <MenuItems/>
+      <MenuItems />
     </View>
   );
 };
 
 const menuStyles = StyleSheet.create({
   container: {
-    flex: 0.75,
+    flex: 1,
+    height: "100%"
   },
   innerContainer: {
     paddingHorizontal: 40,
     paddingVertical: 20,
-    backgroundColor: "black",
+    backgroundColor: "black"
   },
   headerText: {
-    color: "white",
+    color: "gray",
     fontSize: 40,
     flexWrap: "wrap",
-    textAlign: "center",
+    textAlign: "center"
   },
   itemText: {
     color: "#F4CE14",
-    fontSize: 36,
-  },
+    fontSize: 36
+  }
 });
 
 export default App;
