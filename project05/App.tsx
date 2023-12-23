@@ -54,7 +54,7 @@ const App: React.FC = () => {
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
       /> */}
-      {/* <MenuItems/> */}
+      <MenuItems/>
     </View>
   );
 };
