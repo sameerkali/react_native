@@ -1,133 +1,83 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity
-} from "react-native";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import MenuItems from "./MenuItems";
 
-const App = () => {
-  const [data, setData] = useState([]);
+type MenuItem = {
+  name: string;
+  id: string;
+};
+type ItemProps = {
+  name: string;
+};
 
-  useEffect(() => {
-    apiCall();
-  }, []);
+const menuItemsToDisplay: MenuItem[] = [
+  { name: "Hummus", id: "1A" },
+  { name: "Moutabal", id: "2B" },
+  { name: "Falafel", id: "3C" },
+  { name: "Marinated Olives", id: "4D" },
+  { name: "Kofta", id: "5E" },
+  { name: "Eggplant Salad", id: "6F" },
+  { name: "Lentil Burger", id: "7G" },
+  { name: "Smoked Salmon", id: "8H" },
+  { name: "Kofta Burger", id: "9I" },
+  { name: "Turkish Kebab", id: "10J" },
+  { name: "Fries", id: "11K" },
+  { name: "Buttered Rice", id: "12L" },
+  { name: "Bread Sticks", id: "13M" },
+  { name: "Pita Pocket", id: "14N" },
+  { name: "Lentil Soup", id: "15O" },
+  { name: "Greek Salad", id: "16Q" },
+  { name: "Rice Pilaf", id: "17R" },
+  { name: "Baklava", id: "18S" },
+  { name: "Tartufo", id: "19T" },
+  { name: "Tartufo", id: "20U" },
+  { name: "Tiramisu", id: "21V" },
+  { name: "Panna Cotta", id: "22W" },
+];
 
-  const apiCall = async () => {
-    try {
-      const response = await fetch("https://api.github.com/users");
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+
+
+const Item: React.FC<ItemProps> = ({ name }) => (
+  <View style={menuStyles.innerContainer}>
+    <Text style={menuStyles.itemText}>{name}</Text>
+  </View>
+);
+
+const App: React.FC = () => {
+  const renderItem = ({ item }: { item: MenuItem }) => <Item name={item.name} />;
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={[styles.heading, styles.center]}>
-        This is sameers's first app
-      </Text>
-      <ScrollView style={styles.scrollContainer} horizontal={true}>
-        {/* Cards... */}
-        <View style={[styles.imageCard]}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI6tS6siBZ5mTgLz4kPAvXQ5mgsoHkEBg5Dsw7jytC50PTjOHo0eVu8hHuW8JoS7DdKH0" // Replace with your image URL
-            }}
-          />
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Click me 1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Click me 2</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
-      <View style={styles.dataContainer}>
-        {data.map((userData, index) => (
-          <View key={index} style={styles.userDataContainer}>
-            <Text style={styles.userDataText}>{(userData.login)}</Text>
-          </View>
-        ))}
-      </View>
-    </ScrollView>
+    <View style={menuStyles.container}>
+      <Text style={menuStyles.headerText}>View Menu</Text>
+      {/* <FlatList
+        data={menuItemsToDisplay}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+      /> */}
+      {/* <MenuItems/> */}
+    </View>
   );
 };
 
-const styles = StyleSheet.create({
+const menuStyles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center"
+    flex: 0.75,
   },
-  scrollContainer: {
-    marginTop: 60,
-    paddingLeft: 30,
-    paddingRight: 30
+  innerContainer: {
+    paddingHorizontal: 40,
+    paddingVertical: 20,
+    backgroundColor: "black",
   },
-  heading: {
-    fontSize: 30,
-    marginTop: 20,
-    color: "#1BCA9B",
-    fontWeight: "600"
-  },
-  center: {
-    textAlign: "center"
-  },
-  image: {
-    height: 200,
-    width: 200,
-    borderRadius: 10
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    marginTop: 20
-  },
-  button: {
-    backgroundColor: "#1BCA9B",
-    padding: 10,
-    marginHorizontal: 10,
-    borderRadius: 5
-  },
-  buttonText: {
+  headerText: {
     color: "white",
-    fontSize: 16,
-    fontWeight: "bold"
-  },
-  imageCard: {
-    flex: 1,
-    height: 300,
-    width: 250,
-    backgroundColor: "red",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 20,
-    marginRight: 30,
-    borderWidth: 1,
-    borderColor: "thistle",
-    borderRadius: 50
-  },
-  dataContainer: {
-    flexDirection: "row",
+    fontSize: 40,
     flexWrap: "wrap",
-    justifyContent: "center"
+    textAlign: "center",
   },
-  userDataContainer: {
-    margin: 5,
-    padding: 10,
-    backgroundColor: "#1BCA9B",
-    borderRadius: 10
+  itemText: {
+    color: "#F4CE14",
+    fontSize: 36,
   },
-  userDataText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold"
-  }
 });
 
 export default App;
