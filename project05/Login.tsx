@@ -18,11 +18,13 @@ const Login: React.FC = () => {
   const [password, onPassword] = useState("");
   const [login, setLogin] = useState<boolean>(false);
 
+
   const toggle = () => {
     setLogin((prevLogin) => !prevLogin);
   };
 
   const colorScheme = useColorScheme();
+  const window = useWindowDimensions();
 
   return (
     <KeyboardAvoidingView
