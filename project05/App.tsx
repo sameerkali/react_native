@@ -5,7 +5,6 @@ import {
   StyleSheet,
   FlatList,
   ScrollView,
-  TextInput,
 } from "react-native";
 import MenuItems from "./MenuItems";
 import Header from "./Header";
