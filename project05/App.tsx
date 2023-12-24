@@ -5,7 +5,9 @@ import {
   StyleSheet,
   FlatList,
   ScrollView,
-  TextInput
+  TextInput,
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import MenuItems from "./MenuItems";
 import Header from "./Header";
@@ -72,32 +74,36 @@ const App: React.FC = () => {
     //   <Footer/>
     // </View>
 
-    <ScrollView style={styles.container} keyboardDismissMode="on-drag">
-      <Text style={styles.headingSection}>
-       How was your visit to Little Lemon?
-      </Text>
-      <Text style={styles.infoSection}>
-        Little Lemon is a charming neighborhood bistro that serves
-        simple food and classic cocktails in a lively but casual
-        environment. We would love to hear your experience with us!
-      </Text>
-      <TextInput
-        style={styles.input}
-        value={firstName}
-        onChangeText={onChangeFirstName}
-        // keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        value={lastName}
-        onChangeText={onChangeLastName}
-      />
-      <TextInput
-        style={styles.messageInput}
-        value={message}
-        onChangeText={onChangeMessage}
-      />
-    </ScrollView>
+    <KeyboardAvoidingView style={styles.container} 
+    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView keyboardDismissMode="on-drag">
+        <Text style={styles.headingSection}>
+          How was your visit to Little Lemon?
+        </Text>
+        <Text style={styles.infoSection}>
+          Little Lemon is a charming neighborhood bistro that serves simple food
+          and classic cocktails in a lively but casual environment. We would
+          love to hear your experience with us!
+        </Text>
+        <TextInput
+          style={styles.input}
+          value={firstName}
+          onChangeText={onChangeFirstName}
+          // keyboardType="numeric"
+        />
+        <TextInput
+          style={styles.input}
+          value={lastName}
+          onChangeText={onChangeLastName}
+        />
+        <TextInput
+          style={styles.messageInput}
+          value={message}
+          onChangeText={onChangeMessage}
+        />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
