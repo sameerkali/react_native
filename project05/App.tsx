@@ -104,6 +104,8 @@ const App: React.FC = () => {
           style={styles.messageInput}
           value={message}
           onChangeText={onChangeMessage}
+          placeholder="Please leave feedback"
+
         />
       </ScrollView>
     </KeyboardAvoidingView>
