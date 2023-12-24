@@ -37,10 +37,10 @@ const Login: React.FC = () => {
     >
       <Text style={styles.headingSection}>Login to continue...</Text>
       <View style={styles.details}>
-      <Text>Window Dimensions</Text>
-      <Text>Height: {window.height}</Text>
-      <Text>Width: {window.width}</Text>
-      <Text>Font scale: {window.fontScale}</Text>
+        <Text>Window Dimensions</Text>
+        <Text>Height: {window.height}</Text>
+        <Text>Width: {window.width}</Text>
+        <Text>Font scale: {window.fontScale}</Text>
       </View>
       {login && (
         <ScrollView keyboardDismissMode="on-drag">
@@ -73,7 +73,7 @@ const Login: React.FC = () => {
       </ScrollView>
       <TouchableOpacity onPress={toggle}>
         <View style={styles.headingSection}>
-          <Text>Login</Text>
+          <Text>Login to continue</Text>
         </View>
       </TouchableOpacity>
     </KeyboardAvoidingView>
@@ -145,10 +145,10 @@ const styles = StyleSheet.create({
   imageContainer: {
     height: 500
   },
-  details:{
+  details: {
     padding: 10,
     marginVertical: 8,
-    color: "#EDEFEE",
+    color: "#EDEFEE"
   }
 });
 
