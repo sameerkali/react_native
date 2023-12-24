@@ -36,11 +36,12 @@ const Login: React.FC = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <Text style={styles.headingSection}>Login to continue...</Text>
-      
+      <View style={styles.details}>
       <Text>Window Dimensions</Text>
       <Text>Height: {window.height}</Text>
       <Text>Width: {window.width}</Text>
       <Text>Font scale: {window.fontScale}</Text>
+      </View>
       {login && (
         <ScrollView keyboardDismissMode="on-drag">
           <TextInput
@@ -143,6 +144,11 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     height: 500
+  },
+  details:{
+    padding: 10,
+    marginVertical: 8,
+    color: "#EDEFEE",
   }
 });
 
