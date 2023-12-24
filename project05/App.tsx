@@ -6,7 +6,6 @@ import {
 } from "react-native";
 import MenuItems from "./MenuItems";
 import Header from "./Header";
-import Footer from "./Footer";
 import Login from "./Login";
 
 type MenuItem = {
