@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
 } from "react-native";
-import MenuItems from "./MenuItems";
 import Login from "./Login";
 
 type MenuItem = {
