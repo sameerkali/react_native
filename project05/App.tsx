@@ -72,7 +72,7 @@ const App: React.FC = () => {
     //   <Footer/>
     // </View>
 
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} keyboardDismissMode="on-drag">
       <Text style={styles.headingSection}>
        How was your visit to Little Lemon?
       </Text>
@@ -85,6 +85,7 @@ const App: React.FC = () => {
         style={styles.input}
         value={firstName}
         onChangeText={onChangeFirstName}
+        // keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
