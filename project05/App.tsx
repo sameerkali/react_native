@@ -57,10 +57,10 @@ const App: React.FC = () => {
     <Item name={item.name} />
   );
 
-  const [firstName, onChangeFirstName] = useState("");
-  const [lastName, onChangeLastName] = useState("");
+  const [fullName, onChangeFullName] = useState("");
   const [email, onEmail] = useState("");
   const [password, onPassword] = useState("");
+  const [phone, onPhone] = useState("");
   const [message, onChangeMessage] = useState("");
 
   return (
@@ -76,30 +76,21 @@ const App: React.FC = () => {
     //   <Footer/>
     // </View>
 
-    <KeyboardAvoidingView style={styles.container} 
-    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView keyboardDismissMode="on-drag">
         <Text style={styles.headingSection}>
           How was your visit to Little Lemon?
         </Text>
-        <Text style={styles.infoSection}>
-          Little Lemon is a charming neighborhood bistro that serves simple food
-          and classic cocktails in a lively but casual environment. We would
-          love to hear your experience with us!
-        </Text>
+
         <TextInput
           style={styles.input}
-          value={firstName}
-          onChangeText={onChangeFirstName}
-          // keyboardType="numeric"
-          placeholder="First Name"
-        />
-        <TextInput
-          style={styles.input}
-          value={lastName}
-          onChangeText={onChangeLastName}
-          placeholder="Last Name"
+          value={fullName}
+          onChangeText={onChangeFullName}
+          placeholder="Full Name"
+          autoCorrect={true}
         />
         <TextInput
           style={styles.input}
@@ -110,18 +101,25 @@ const App: React.FC = () => {
         />
         <TextInput
           style={styles.input}
+          value={phone}
+          onChangeText={onPhone}
+          placeholder="Phone"
+          keyboardType="number-pad"
+        />
+        <TextInput
+          style={styles.input}
           value={password}
           onChangeText={onPassword}
           placeholder="Password"
           secureTextEntry={true}
         />
+
         <TextInput
           style={styles.messageInput}
           value={message}
           onChangeText={onChangeMessage}
           placeholder="Please leave feedback"
           multiline={true}
-
         />
       </ScrollView>
     </KeyboardAvoidingView>
