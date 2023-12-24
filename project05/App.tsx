@@ -105,6 +105,7 @@ const App: React.FC = () => {
           value={message}
           onChangeText={onChangeMessage}
           placeholder="Please leave feedback"
+          multiline={true}
 
         />
       </ScrollView>
