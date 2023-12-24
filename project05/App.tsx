@@ -91,6 +91,7 @@ const App: React.FC = () => {
           onChangeText={onChangeFullName}
           placeholder="Full Name"
           autoCorrect={true}
+          clearButtonMode="always"
         />
         <TextInput
           style={styles.input}
