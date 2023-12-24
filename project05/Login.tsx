@@ -46,6 +46,7 @@ const Login: React.FC = () => {
             placeholder="Password"
             secureTextEntry={true}
           />
+          <Image style={styles.image} source={require('./img/cover.png')} />
           
         </ScrollView>
       )}
