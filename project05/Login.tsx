@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
+  useWindowDimensions
 } from "react-native";
 
 const Login: React.FC = () => {
