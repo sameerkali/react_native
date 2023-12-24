@@ -49,13 +49,12 @@ const Login: React.FC = () => {
         </ScrollView>
       )}
       <ScrollView style={styles.imageContainer}>
-        <Image style={styles.image} source={require("./img/cover.png")} />
-        <Image style={styles.image} source={require("./img/cover.png")} />
-        <Image style={styles.image} source={require("./img/cover.png")} />
-        <Image style={styles.image} source={require("./img/cover.png")} />
-        <Image style={styles.image} source={require("./img/cover.png")} />
-        <Image style={styles.image} source={require("./img/cover.png")} />
-        <Image style={styles.image} source={require("./img/cover.png")} />
+        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
+        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
+        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
+        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
+        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
+        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
       </ScrollView>
       <TouchableOpacity onPress={toggle}>
         <View style={styles.headingSection}>
@@ -120,10 +119,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#495E57"
   },
   image: {
-    height: 100,
-    width: 350,
-    resizeMode: "contain",
-    marginVertical:30
+    height: 160,
+    width: 300,
+    resizeMode: 'contain',
+    marginHorizontal: 55,
+    marginVertical: 25,
+    borderRadius: 30,
+    borderWidth: 3,
+    borderColor: "#EDEFEE",
   },
   imageContainer: {
     height: 500
