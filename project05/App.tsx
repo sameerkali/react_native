@@ -91,11 +91,14 @@ const App: React.FC = () => {
           value={firstName}
           onChangeText={onChangeFirstName}
           // keyboardType="numeric"
+          placeholder="First Name"
         />
         <TextInput
           style={styles.input}
           value={lastName}
           onChangeText={onChangeLastName}
+          placeholder="Last Name"
+
         />
         <TextInput
           style={styles.messageInput}
