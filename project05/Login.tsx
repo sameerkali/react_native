@@ -8,7 +8,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  useColorScheme,
 } from "react-native";
 
 const Login: React.FC = () => {
@@ -17,16 +18,19 @@ const Login: React.FC = () => {
   const [login, setLogin] = useState<boolean>(false);
 
   const toggle = () => {
-    if (login) {
-      setLogin(false);
-    } else {
-      setLogin(true);
-    }
+    setLogin((prevLogin) => !prevLogin);
   };
+
+  const colorScheme = useColorScheme();
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={[
+        styles.container,
+        colorScheme === "light"
+          ? { backgroundColor: "#EAF0F1" }
+          : { backgroundColor: "#333945" },
+      ]}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <Text style={styles.headingSection}>Login to continue...</Text>
@@ -49,12 +53,15 @@ const Login: React.FC = () => {
         </ScrollView>
       )}
       <ScrollView style={styles.imageContainer}>
-        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
-        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
-        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
-        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
-        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
-        <Image accessible={true} accessibilityLabel={`this is image description`} style={styles.image} source={require("./img/cover.png")} />
+        {[1, 2, 3, 4, 5, 6].map((index) => (
+          <Image
+            key={index}
+            accessible={true}
+            accessibilityLabel={`this is image description`}
+            style={styles.image}
+            source={require("./img/cover.png")}
+          />
+        ))}
       </ScrollView>
       <TouchableOpacity onPress={toggle}>
         <View style={styles.headingSection}>
@@ -68,22 +75,22 @@ const Login: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: "100%"
+    height: "100%",
   },
   innerContainer: {
     paddingHorizontal: 40,
     paddingVertical: 20,
-    backgroundColor: "black"
+    backgroundColor: "black",
   },
   headerText: {
     color: "gray",
     fontSize: 40,
     flexWrap: "wrap",
-    textAlign: "center"
+    textAlign: "center",
   },
   itemText: {
     color: "#F4CE14",
-    fontSize: 36
+    fontSize: 36,
   },
   input: {
     height: 40,
@@ -92,7 +99,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
     borderColor: "EDEFEE",
-    backgroundColor: "#F4CE14"
+    backgroundColor: "#F4CE14",
   },
   messageInput: {
     height: 100,
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     fontSize: 16,
-    backgroundColor: "#F4CE14"
+    backgroundColor: "#F4CE14",
   },
   infoSection: {
     fontSize: 24,
@@ -108,7 +115,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     color: "#EDEFEE",
     textAlign: "center",
-    backgroundColor: "#495E57"
+    backgroundColor: "#495E57",
   },
   headingSection: {
     fontSize: 28,
@@ -116,21 +123,20 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     color: "#EDEFEE",
     textAlign: "center",
-    backgroundColor: "#495E57"
+    backgroundColor: "#495E57",
   },
   image: {
     height: 160,
     width: 300,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginHorizontal: 55,
     marginVertical: 25,
     borderRadius: 30,
     borderWidth: 3,
-    borderColor: "#EDEFEE",
   },
   imageContainer: {
-    height: 500
-  }
+    height: 500,
+  },
 });
 
 export default Login;
