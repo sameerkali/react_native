@@ -73,7 +73,7 @@ const Login: React.FC = () => {
       </ScrollView>
       <TouchableOpacity onPress={toggle}>
         <View style={styles.headingSection}>
-          <Text>Login to continue</Text>
+          <Text>Login</Text>
         </View>
       </TouchableOpacity>
     </KeyboardAvoidingView>
