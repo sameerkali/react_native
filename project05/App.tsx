@@ -59,6 +59,7 @@ const App: React.FC = () => {
 
   const [firstName, onChangeFirstName] = useState("");
   const [lastName, onChangeLastName] = useState("");
+  const [password, onPassword] = useState("");
   const [message, onChangeMessage] = useState("");
 
   return (
@@ -98,7 +99,13 @@ const App: React.FC = () => {
           value={lastName}
           onChangeText={onChangeLastName}
           placeholder="Last Name"
-
+        />
+        <TextInput
+          style={styles.input}
+          value={password}
+          onChangeText={onPassword}
+          placeholder="Password"
+          secureTextEntry={true}
         />
         <TextInput
           style={styles.messageInput}
