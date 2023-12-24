@@ -46,14 +46,19 @@ const Login: React.FC = () => {
             placeholder="Password"
             secureTextEntry={true}
           />
-          <Image style={styles.image} source={require('./img/cover.png')} />
-          <Image style={styles.image} source={{
-            uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg5C1ZvRQN1S8wR6X3V3zNoxOAY6PTxWwiDA&usqp=CAU'
-          }} />
         </ScrollView>
       )}
+      <ScrollView style={styles.imageContainer}>
+        <Image style={styles.image} source={require("./img/cover.png")} />
+        <Image style={styles.image} source={require("./img/cover.png")} />
+        <Image style={styles.image} source={require("./img/cover.png")} />
+        <Image style={styles.image} source={require("./img/cover.png")} />
+        <Image style={styles.image} source={require("./img/cover.png")} />
+        <Image style={styles.image} source={require("./img/cover.png")} />
+        <Image style={styles.image} source={require("./img/cover.png")} />
+      </ScrollView>
       <TouchableOpacity onPress={toggle}>
-        <View style={styles.headingSection}  >
+        <View style={styles.headingSection}>
           <Text>Login</Text>
         </View>
       </TouchableOpacity>
@@ -116,11 +121,13 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 100,
-    width: 300,
+    width: 350,
     resizeMode: "contain",
-    marginHorizontal: 50,
-    marginVertical: 50 
-  } 
+    marginVertical:30
+  },
+  imageContainer: {
+    height: 500
+  }
 });
 
 export default Login;
