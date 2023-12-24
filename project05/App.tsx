@@ -7,7 +7,6 @@ import {
   ScrollView,
   TextInput,
   KeyboardAvoidingView,
-  Platform
 } from "react-native";
 import MenuItems from "./MenuItems";
 import Header from "./Header";
