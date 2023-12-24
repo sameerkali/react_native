@@ -5,7 +5,6 @@ import {
   StyleSheet,
 } from "react-native";
 import MenuItems from "./MenuItems";
-import Header from "./Header";
 import Login from "./Login";
 
 type MenuItem = {
