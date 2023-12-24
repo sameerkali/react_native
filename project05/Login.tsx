@@ -47,7 +47,9 @@ const Login: React.FC = () => {
             secureTextEntry={true}
           />
           <Image style={styles.image} source={require('./img/cover.png')} />
-          
+          <Image style={styles.image} source={{
+            uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg5C1ZvRQN1S8wR6X3V3zNoxOAY6PTxWwiDA&usqp=CAU'
+          }} />
         </ScrollView>
       )}
       <TouchableOpacity onPress={toggle}>
