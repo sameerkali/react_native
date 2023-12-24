@@ -12,6 +12,7 @@ import {
 import MenuItems from "./MenuItems";
 import Header from "./Header";
 import Footer from "./Footer";
+import Login from "./Login";
 
 type MenuItem = {
   name: string;
@@ -57,12 +58,6 @@ const App: React.FC = () => {
     <Item name={item.name} />
   );
 
-  const [fullName, onChangeFullName] = useState("");
-  const [email, onEmail] = useState("");
-  const [password, onPassword] = useState("");
-  const [phone, onPhone] = useState("");
-  const [message, onChangeMessage] = useState("");
-
   return (
     // <View style={menuStyles.container}>
     //   <Header/>
@@ -75,55 +70,7 @@ const App: React.FC = () => {
     //   <MenuItems />
     //   <Footer/>
     // </View>
-
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <ScrollView keyboardDismissMode="on-drag">
-        <Text style={styles.headingSection}>
-          How was your visit to Little Lemon?
-        </Text>
-
-        <TextInput
-          style={styles.input}
-          value={fullName}
-          onChangeText={onChangeFullName}
-          placeholder="Full Name"
-          autoCorrect={true}
-          clearButtonMode="always"
-        />
-        <TextInput
-          style={styles.input}
-          value={email}
-          onChangeText={onEmail}
-          placeholder="john@example.com"
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={styles.input}
-          value={phone}
-          onChangeText={onPhone}
-          placeholder="Phone"
-          keyboardType="number-pad"
-        />
-        <TextInput
-          style={styles.input}
-          value={password}
-          onChangeText={onPassword}
-          placeholder="Password"
-          secureTextEntry={true}
-        />
-
-        <TextInput
-          style={styles.messageInput}
-          value={message}
-          onChangeText={onChangeMessage}
-          placeholder="Please leave feedback"
-          multiline={true}
-        />
-      </ScrollView>
-    </KeyboardAvoidingView>
+    <Login />
   );
 };
 
