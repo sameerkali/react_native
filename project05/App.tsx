@@ -47,8 +47,8 @@ const menuItemsToDisplay: MenuItem[] = [
 ];
 
 const Item: React.FC<ItemProps> = ({ name }) => (
-  <View style={menuStyles.innerContainer}>
-    <Text style={menuStyles.itemText}>{name}</Text>
+  <View style={styles.innerContainer}>
+    <Text style={styles.itemText}>{name}</Text>
   </View>
 );
 
@@ -59,6 +59,7 @@ const App: React.FC = () => {
 
   const [firstName, onChangeFirstName] = useState("");
   const [lastName, onChangeLastName] = useState("");
+  const [email, onEmail] = useState("");
   const [password, onPassword] = useState("");
   const [message, onChangeMessage] = useState("");
 
@@ -99,6 +100,13 @@ const App: React.FC = () => {
           value={lastName}
           onChangeText={onChangeLastName}
           placeholder="Last Name"
+        />
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={onEmail}
+          placeholder="john@example.com"
+          keyboardType="email-address"
         />
         <TextInput
           style={styles.input}
