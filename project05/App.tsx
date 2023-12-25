@@ -5,6 +5,7 @@ import {
   StyleSheet,
 } from "react-native";
 import Login from "./Login";
+import { NavigationContainer } from '@react-navigation/native';
 
 type MenuItem = {
   name: string;
