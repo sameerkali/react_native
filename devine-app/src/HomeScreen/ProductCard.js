@@ -88,6 +88,10 @@ const ProductCard = ({name, id}) => {
             onPress={() => navigation.navigate('ProductCategory', {id})}>
             <Text style={tw`font-medium`}>see all</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ProductCategory', {id})}>
+            <Text style={tw`font-medium`}>see all</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={tw`flex-row justify-center items-center`}>
