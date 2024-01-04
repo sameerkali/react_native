@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Modal, StyleSheet } from 'react-native';
 import { BaseUrl } from '../BaseUrl';
 import { useRoute } from '@react-navigation/native';
+import tw from 'tailwind-react-native-classnames';
 
 const ProductDetailPage = () => {
   const route = useRoute();
   const [productData, setProductData] = useState(null);
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
   useEffect(() => {
     const productId = route.params?.id;
@@ -39,58 +41,68 @@ const ProductDetailPage = () => {
 
   const handleButtonPress = () => {
     console.log('ProductDetailPage - Button pressed');
-    // Add your logic for button press here
+    setPopupVisible(true);
+  };
+
+  const handlePopupClose = () => {
+    setPopupVisible(false);
   };
 
   console.log('ProductDetailPage - Rendered with productData:', productData);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>Product detail</Text>
+    <View style={tw`flex-1 bg-white`}>
       {productData ? (
         <>
-          <Image source={{ uri: productData.image }} style={styles.image} />
-          <Text>{productData.name}</Text>
-          <Text>{productData.price}</Text>
-          <Text>{productData.quantity}</Text>
-          <Text>{productData.unit_id}</Text>
+          <Image source={{ uri: productData.image }} style={tw`w-full h-96 mb-4`} />
+          <Text style={tw`text-3xl font-bold ml-5`}>{productData.name}</Text>
+          <Text style={tw`text-lg font-bold ml-5`}>{productData.price}</Text>
+          <Text style={tw`text-lg font-bold ml-5`}>{productData.quantity}</Text>
+          <Text style={tw`text-lg font-bold ml-5`}>{productData.unit_id}</Text>
           {/* Add more text components for other properties as needed */}
         </>
       ) : (
         <Text>No data received for the product.</Text>
       )}
-      <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-        <Text style={styles.buttonText}>Add To Product</Text>
+
+      <TouchableOpacity style={tw`bg-blue-500 w-56 py-6 ml-6 mt-4 rounded`} onPress={handleButtonPress}>
+        <Text style={tw`text-white text-base text-center`}>Add To Product</Text>
       </TouchableOpacity>
+
+      <Modal
+        visible={isPopupVisible}
+        transparent
+        animationType="slide"
+        onRequestClose={handlePopupClose}
+      >
+        <View style={styles.popupContainer}>
+          <Text style={styles.popupText}>Product added successfully!</Text>
+          <TouchableOpacity style={styles.closeButton} onPress={handlePopupClose}>
+            <Text style={tw`text-blue-500`}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  popupContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  heading: {
+  popupText: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 20,
+    color: 'white',
   },
-  image: {
-    width: 200,
-    height: 200,
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: 'blue',
+  closeButton: {
+    backgroundColor: 'white',
     padding: 10,
     borderRadius: 5,
-    marginTop: 20,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
   },
 });
 
