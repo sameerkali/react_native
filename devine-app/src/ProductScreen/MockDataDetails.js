@@ -9,7 +9,7 @@
       image:
         'https://images.unsplash.com/photo-1532732883790-3acf4e1c8cae?auto=format&fit=crop&q=80&w=2274&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       instock: true,
-      cost: '1500',
+      cost: '15020',
     },
     {
       id: '2',
@@ -99,6 +99,6 @@
       image:
         'https://media.istockphoto.com/id/1578373464/photo/woman-reading-hindu-religious-book-bhagavad-gita.jpg?s=1024x1024&w=is&k=20&c=rJx3E7buUa3lwYlo9wyfdZkkSyaE4hPxeHMW2mVTVHM=',
       instock: false,
-      cost: '200',
+      cost: '2010',
     }
   ];
