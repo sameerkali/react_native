@@ -13,7 +13,7 @@ const Card = ({image, productName, cost, instock, id, categoryName}) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('ProductDetailPage', {id});
-          console.log(id);
+          console.log("this is id ==== (card page)"+id);
         }}>
         <View style={styles.card}>
           <Image

@@ -1,13 +1,13 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, FlatList} from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import Card from './Card'; // Make sure this component is correctly implemented
-import {useNavigation} from '@react-navigation/native';
-import {BaseUrl} from '../BaseUrl';
+import { useNavigation } from '@react-navigation/native';
+import { BaseUrl } from '../BaseUrl';
 
-const ProductCard = ({name, id}) => {
+const ProductCard = ({ name, id }) => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,18 +17,13 @@ const ProductCard = ({name, id}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(BaseUrl + '/getAllCategoryWithProduct');
+        const response = await fetch(BaseUrl + '/getAllProductDetails'); // Updated API endpoint
         const fetchedData = await response.json();
 
-        if (
-          response.ok &&
-          fetchedData.message === 'Categories retrieved successfully.'
-        ) {
+        if (response.ok && fetchedData.message === 'Products retrieved successfully.') {
           setData(fetchedData.data);
         } else {
-          throw new Error(
-            fetchedData.message || 'Failed to retrieve categories.',
-          );
+          throw new Error(fetchedData.message || 'Failed to retrieve products.');
         }
       } catch (err) {
         console.error(err);
@@ -42,22 +37,20 @@ const ProductCard = ({name, id}) => {
 
   const scrollToPrevious = () => {
     if (scrollViewRef.current && data.length > 0) {
-      scrollViewRef.current.scrollToIndex({index: 0, animated: true});
+      scrollViewRef.current.scrollToIndex({ index: 0, animated: true });
     }
   };
 
   const scrollToNext = () => {
     if (scrollViewRef.current && data.length > 0) {
-      scrollViewRef.current.scrollToEnd({animated: true});
+      scrollViewRef.current.scrollToEnd({ animated: true });
     }
   };
 
   if (error) {
     return (
       <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>
-          Failed to load data: {error.message}
-        </Text>
+        <Text style={styles.errorText}>Failed to load data: {error.message}</Text>
       </View>
     );
   }
@@ -70,26 +63,12 @@ const ProductCard = ({name, id}) => {
     );
   }
 
-  // Flatten the data to get all products
-  const allProducts = data.reduce((acc, category) => {
-    const products = category.newProductTables.map(product => ({
-      ...product,
-      category_name: category.category_name,
-    }));
-    return [...acc, ...products];
-  }, []);
-
   return (
     <View>
       <View style={tw`flex-row mt-5`}>
         <View style={styles.categoryHeader}>
           <Text style={tw`font-medium`}>{name}</Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('ProductCategory', {id})}>
-            <Text style={tw`font-medium`}>see all</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('ProductCategory', {id})}>
+          <TouchableOpacity onPress={() => navigation.navigate('ProductCategory', { id, name })}>
             <Text style={tw`font-medium`}>see all</Text>
           </TouchableOpacity>
         </View>
@@ -99,12 +78,12 @@ const ProductCard = ({name, id}) => {
           <FontAwesome name={'angle-left'} size={30} color={'#048C8C'} />
         </TouchableOpacity>
         <FlatList
-          data={allProducts}
+          data={data}
           ref={scrollViewRef}
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
-          renderItem={({item}) => (
+          renderItem={({ item }) => (
             <Card
               image={item.image || ''}
               productName={item.name || 'unavailable'}
