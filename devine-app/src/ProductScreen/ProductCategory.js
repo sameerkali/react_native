@@ -1,13 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
-import {BaseUrl} from '../BaseUrl';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { BaseUrl } from '../BaseUrl';
 import tw from 'tailwind-react-native-classnames';
 import Header from '../Component/Header';
 import { useNavigation } from '@react-navigation/native';
@@ -24,10 +17,7 @@ const CategoryPage = () => {
         const response = await fetch(`${BaseUrl}/getAllCategoryWithProduct`);
         const responseData = await response.json();
 
-        if (
-          response.ok &&
-          responseData.message === 'Categories retrieved successfully.'
-        ) {
+        if (response.ok && responseData.message === 'Categories retrieved successfully.') {
           setData(responseData.data);
         } else {
           throw new Error(responseData.message || 'Failed to retrieve data.');
@@ -66,36 +56,30 @@ const CategoryPage = () => {
       <Header />
       <FlatList
         data={data}
-        keyExtractor={item =>
-          item.category_id ? item.category_id.toString() : 'undefined'
-        }
-        renderItem={({item, id}) => (
+        keyExtractor={item => item.category_id ? item.category_id.toString() : 'undefined'}
+        renderItem={({ item }) => (
           <View style={tw`mx-4`}>
             <Text style={tw`text-lg font-bold mb-2`}>{item.category_name}</Text>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('ProductDetailPage', {id});
-                console.log('this is id ==== (card page)' + id);
-              }}>
-              <FlatList
-                horizontal
-                data={item.newProductTables}
-                keyExtractor={product =>
-                  product.id ? product.id.toString() : 'undefined'
-                }
-                renderItem={({item: product}) => (
+
+            <FlatList
+              horizontal
+              data={item.newProductTables}
+              keyExtractor={product => product.id ? product.id.toString() : 'undefined'}
+              renderItem={({ item: product }) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('ProductDetailPage', { id: product.id });
+                    console.log('this is id ==== (productCategoury page)' + product.id);
+                  }}>
                   <View style={tw`border border-blue-500 p-2 m-2`}>
-                    <Image
-                      source={{uri: product.image}}
-                      style={tw`w-32 h-32`}
-                    />
+                    <Image source={{ uri: product.image }} style={tw`w-32 h-32`} />
                     <Text>{product.name}</Text>
                     <Text>{product.price}</Text>
                     {/* Add more properties as needed */}
                   </View>
-                )}
-              />
-            </TouchableOpacity>
+                </TouchableOpacity>
+              )}
+            />
           </View>
         )}
       />
