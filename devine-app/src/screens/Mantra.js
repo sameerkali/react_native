@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Button, Image, Text } from 'react-native';
 import Sound from 'react-native-sound';
 import ImagePicker from 'react-native-image-picker';
+import { BaseUrl } from '../BaseUrl';
 
 const Mantra = () => {
   const [sound, setSound] = useState(null);
@@ -11,7 +12,7 @@ const Mantra = () => {
 
   useEffect(() => {
     // Fetch the JSON data from the provided URL
-    fetch('http://143.110.188.54:7000/getAllMantras')
+    fetch(`${BaseUrl}/getAllMantras`)
       .then(response => response.json())
       .then(data => {
         const { URL, artWork } = data;

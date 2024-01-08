@@ -1,40 +1,119 @@
-import TrackPlayer, { Event, RepeatMode } from "react-native-track-player";
+// import TrackPlayer, {Event, RepeatMode, State} from 'react-native-track-player';
+// import {playerDeeksha} from './src/screens/musicData';
 
-import {playListData} from './src/constants'
+// export async function setupPlayer() {
+//   try {
+//     const playbackState = await TrackPlayer.getPlaybackState();
+//     if (playbackState !== null) {
+//       return true; // Player is already set up
+//     }
+//   } catch (error) {
+//     console.error('Error checking playback state:', error);
+//   }
 
-export async function setupPlayer(){
-    let isSetup = false;
-    try {
-        await TrackPlayer.getCurrentTrack()
-        isSetup = true
-    } catch (error) {
-        await TrackPlayer.setupPlayer()
-        isSetup = true
-    } finally{
-        return isSetup;
+//   try {
+//     await TrackPlayer.setupPlayer();
+//     return true;
+//   } catch (error) {
+//     console.error('Error setting up player:', error);
+//     throw error; // Re-throw the error for further handling
+//   }
+// }
+
+// export async function addTrack() {
+//   await TrackPlayer.add(playerDeeksha);
+//   await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+// }
+
+// export async function playbackService() {
+//   TrackPlayer.addEventListener(Event.RemotePause, async () => {
+//     await TrackPlayer.pause();
+//   });
+
+//   TrackPlayer.addEventListener(Event.RemotePlay, async () => {
+//     const playbackState = await TrackPlayer.getPlaybackState();
+//     if (playbackState !== State.Playing) {
+//       await TrackPlayer.play();
+//     }
+//   });
+
+//   TrackPlayer.addEventListener(Event.RemoteNext, async () => {
+//     await TrackPlayer.skipToNext();
+//   });
+
+//   TrackPlayer.addEventListener(Event.RemotePrevious, async () => {
+//     await TrackPlayer.skipToPrevious();
+//   });
+// }
+
+
+
+
+import TrackPlayer, { Event, RepeatMode, State } from 'react-native-track-player';
+
+export async function setupPlayer() {
+  try {
+    const playbackState = await TrackPlayer.getPlaybackState();
+    if (playbackState !== null) {
+      return true; 
     }
+  } catch (error) {
+    console.error('Error checking playback state: (musicPlayerServices.js)', error);
+  }
+
+  try {
+    await TrackPlayer.setupPlayer();
+    return true;
+  } catch (error) {
+    console.error('Error setting up player: (musicPlayerServices.js)', error);
+    throw error; // Re-throw the error for further handling
+  }
 }
 
-export async function addTrack(){
-    await TrackPlayer.add(playListData)
-    await TrackPlayer.setRepeatMode(RepeatMode.Queue)
+export async function addTrack() {
+  try {
+    const response = await fetch('https://backend.divinezone.in/getAllMantras');
+    if (!response.ok) {
+      throw new Error('Failed to fetch data: (musicPlayerServices.js)');
+    }
+
+    const data = await response.json();
+    console.log('================================================Fetched Data:(musicPlayerServices.js)', data); 
+
+    const tracks = data.map((item) => ({
+      id: item.id.toString(),
+      url: item.audio_url,
+      title: item.title,
+      artist: item.artist,
+      artwork: item.image_url,
+    }));
+
+    await TrackPlayer.reset(); 
+    await TrackPlayer.add(tracks);
+    await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+  } catch (error) {
+    console.error('Error adding tracks:', error);
+    throw error;
+  }
 }
 
+export async function playbackService() {
+  TrackPlayer.addEventListener(Event.RemotePause, async () => {
+    await TrackPlayer.pause();
+  });
 
-export async function playbackService (){
-    TrackPlayer.addEventListener(Event.RemotePause, () => {
-        TrackPlayer.pause()
-    })
+  TrackPlayer.addEventListener(Event.RemotePlay, async () => {
+    const playbackState = await TrackPlayer.getPlaybackState();
+    if (playbackState !== State.Playing) {
+      await TrackPlayer.play();
+    }
+  });
 
-    TrackPlayer.addEventListener(Event.RemotePlay, () => {
-        TrackPlayer.play()
-    })
-    TrackPlayer.addEventListener(Event.RemoteNext, () => {
-        TrackPlayer.skipToNext()
-    })
-    TrackPlayer.addEventListener(Event.RemotePrevious, () => {
-        TrackPlayer.skipToPrevious()
-    })
+  TrackPlayer.addEventListener(Event.RemoteNext, async () => {
+    await TrackPlayer.skipToNext();
+  });
 
-    
+  TrackPlayer.addEventListener(Event.RemotePrevious, async () => {
+    await TrackPlayer.skipToPrevious();
+  });
 }
