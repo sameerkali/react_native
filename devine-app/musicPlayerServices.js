@@ -55,7 +55,7 @@ export async function setupPlayer() {
   try {
     const playbackState = await TrackPlayer.getPlaybackState();
     if (playbackState !== null) {
-      return true; 
+      return true;
     }
   } catch (error) {
     console.error('Error checking playback state: (musicPlayerServices.js)', error);
@@ -78,8 +78,9 @@ export async function addTrack() {
     }
 
     const data = await response.json();
-    console.log('================================================Fetched Data:(musicPlayerServices.js)', data); 
+    console.log('Fetched Data:', data); // Log the fetched data
 
+    // Assuming that the API response is an array of tracks, modify this accordingly
     const tracks = data.map((item) => ({
       id: item.id.toString(),
       url: item.audio_url,
@@ -88,7 +89,7 @@ export async function addTrack() {
       artwork: item.image_url,
     }));
 
-    await TrackPlayer.reset(); 
+    await TrackPlayer.reset(); // Clear the existing tracks
     await TrackPlayer.add(tracks);
     await TrackPlayer.setRepeatMode(RepeatMode.Queue);
   } catch (error) {
