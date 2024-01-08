@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -13,9 +13,9 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 import tw from 'tailwind-react-native-classnames';
 import HeaderTwo from '../Component/HeaderTwo';
 import NavModal from '../Component/NavModal';
-import { useWindowDimensions } from 'react-native';
-import { data, dataTwo, dataThree, dataFour } from './LiveScreenData';
-import LiveScreenCards from './LiveScreenCards'
+import {useWindowDimensions} from 'react-native';
+import {data, dataTwo, dataThree, dataFour} from './LiveScreenData';
+import LiveScreenCards from './LiveScreenCards';
 
 const LiveScreen = () => {
   const [toggle, setToggle] = useState(false);
@@ -31,7 +31,7 @@ const LiveScreen = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const playNewLiveVideo = (videoId) => {
+  const playNewLiveVideo = videoId => {
     setLiveVideoId(videoId);
     setIsPlaying(true);
   };
@@ -42,8 +42,15 @@ const LiveScreen = () => {
   return (
     <SafeAreaView style={tw`flex-grow bg-white `}>
       <View>
-        <HeaderTwo toggle={toggle} setToggle={setToggle} toggleModal={toggleModal} />
-        <NavModal setModalVisible={setModalVisible} isModalVisible={isModalVisible} />
+        <HeaderTwo
+          toggle={toggle}
+          setToggle={setToggle}
+          toggleModal={toggleModal}
+        />
+        <NavModal
+          setModalVisible={setModalVisible}
+          isModalVisible={isModalVisible}
+        />
 
         <ScrollView style={tw`pt-1  mb-28`}>
           <YoutubePlayer height={215} videoId={liveVideoId} />
@@ -56,9 +63,12 @@ const LiveScreen = () => {
                 borderRightColor: 'white',
                 borderLeftColor: 'white',
               },
-            ]}
-          >
-            <Text style={[tw`px-3 font-bold text-2xl text-center`, { color: '#048C8C' }]}>
+            ]}>
+            <Text
+              style={[
+                tw`px-3 font-bold text-2xl text-center`,
+                {color: '#048C8C'},
+              ]}>
               Live Tv Channels
             </Text>
           </View>
@@ -87,7 +97,5 @@ const LiveScreen = () => {
     </SafeAreaView>
   );
 };
-
-
 
 export default LiveScreen;
