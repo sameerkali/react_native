@@ -21,6 +21,8 @@ const Card = ({ image, onPress }) => {
 
 const LiveCard = () => {
   const data = allData;
+  console.log(data, "this is data")
+  
   const scrollViewRef = useRef(null);
   const navigation = useNavigation();
 
