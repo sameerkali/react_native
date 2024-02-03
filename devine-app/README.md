@@ -1,2 +1,0 @@
-# Cam
- document scanner app
