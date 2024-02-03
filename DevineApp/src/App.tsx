@@ -1,29 +1,22 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import Home from './Home';
+import tw from 'twrnc'
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <ScrollView>
         <View>
-          <Text>Hello World !</Text>
+          <Text style={tw`text-4xl`}>
+            Hello Sir
+          </Text>
+          <Home/>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
+
 
 export default App;
